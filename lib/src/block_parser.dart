@@ -21,7 +21,8 @@ final _setextPattern = RegExp(r'^[ ]{0,3}(=+|-+)\s*$');
 final _headerPattern = RegExp(r'^ {0,3}(#{1,6})[ \x09\x0b\x0c](.*?)#*$');
 
 /// The line starts with `>` with one optional space after.
-final _blockquotePattern = RegExp(r'^[ ]{0,3}>[ ]?(.*)$');
+/// PATCH: Use negative look-ahead to exclude spoiler tags (tag is: >! ... !<)
+final _blockquotePattern = RegExp(r'^[ ]{0,3}>(?!!)[ ]?(.*)$');
 
 /// A line indented four spaces. Used for code blocks and lists.
 final _indentPattern = RegExp(r'^(?:    | {0,3}\t)(.*)$');
